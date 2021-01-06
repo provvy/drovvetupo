@@ -38,6 +38,7 @@ function App() {
 
   return (
     <div style={{backgroundColor: styleclass[index], color: styleclass[index], animationPlayState: animationState}} className="container" >
+      <h1>TITOLO</h1>
       <div className="quote-box" id="quote-box">
         <Quotes content={quote.content} author={quote.author} />
         <div className="link-container">
