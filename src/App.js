@@ -8,7 +8,8 @@ function App() {
 
   const [quote, setQuote] = useState("");
   const [index, setIndex] = useState(null);
-  const [animationState, setAnimationState] = useState("paused");
+  const [opacity, setOpacity] = useState("0");
+  const [disabled, setDisabled] = useState(true);
   const [styleclass, setStyleClass] = useState(["#E74B3C", "#9B59B6", "#342224", "#77B1A9", "#FB6964", "#2C3E50", "#BDBB99", "#472E32", "#73A857", "#F39C12"]);
 
   const getRandomQuote = () => {
@@ -16,8 +17,8 @@ function App() {
     .then(response => response.json())
     .then(data => {
       setQuote(data);
-      setIndex(generateIndex());
-      setAnimationState("running");
+      setOpacity("1");
+      setDisabled(false);
     })
     .catch(error => {
       console.log(error);
@@ -30,20 +31,26 @@ function App() {
 
   useEffect(() => {
     getRandomQuote();
+    setIndex(generateIndex());
   }, []);
 
   const updateQuote = () => {
-    getRandomQuote();
+    const timeout = setTimeout(() => {
+      getRandomQuote();
+    }, 375);
+    setIndex(generateIndex());
+    setOpacity("0");
+    setDisabled(true);
   }
 
   return (
-    <div style={{backgroundColor: styleclass[index], color: styleclass[index], animationPlayState: animationState}} className="container" >
-      <h1>TITOLO</h1>
+    <div style={{backgroundColor: styleclass[index], color: styleclass[index]}} className="container" >
+      <h1 id="header">Random Quotes Generator</h1>
       <div className="quote-box" id="quote-box">
-        <Quotes content={quote.content} author={quote.author} />
+        <Quotes style={{opacity: opacity}} content={quote.content} author={quote.author} />
         <div className="link-container">
         <Link style={{backgroundColor: styleclass[index]}} />
-        <Button style={{backgroundColor: styleclass[index]}} onclick={updateQuote} text="New Quote" />
+        <Button disabled={disabled} style={{backgroundColor: styleclass[index]}} onclick={updateQuote} text="New Quote" />
         </div>
       </div>
       <footer style={{color: "white", fontSize: "11px", marginTop: "13px"}} id="footer">by Paolo Provveduto</footer>

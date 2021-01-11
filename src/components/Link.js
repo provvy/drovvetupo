@@ -2,7 +2,7 @@ import React from "react";
 
 const Link = (props) => {
   return (
-    <a style={props.style} className="link" id="tweet-quote" target="_blank" href="twitter.com/intent/tweet"><i className="fab fa-twitter"></i></a>
+    <a style={props.style} className="link" id="tweet-quote" target="_blank" rel="noreferrer" href="http://twitter.com/intent/tweet"><i className="fab fa-twitter"></i></a>
   );
 }
 
