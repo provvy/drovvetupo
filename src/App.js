@@ -53,7 +53,7 @@ function App() {
         <Button disabled={disabled} style={{backgroundColor: styleclass[index]}} onclick={updateQuote} text="New Quote" />
         </div>
       </div>
-      <footer style={{color: "white", fontSize: "11px", marginTop: "13px"}} id="footer">by Paolo Provveduto</footer>
+      <footer style={{color: "white", fontSize: "11px", marginTop: "13px"}} id="footer">coded by Paolo Provveduto</footer>
     </div>
   );
 }
